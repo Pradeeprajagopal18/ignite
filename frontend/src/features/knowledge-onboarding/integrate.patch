@@ -1,0 +1,20 @@
+diff --git a/frontend/src/knowledge.tsx b/frontend/src/knowledge.tsx
+index 75490cf..cf44a31 100644
+--- a/frontend/src/knowledge.tsx
++++ b/frontend/src/knowledge.tsx
+@@ -7,6 +7,7 @@ import {
+   type RepoSummary, type SourceInput, type SourceKind, type Team, type TestResult,
+ } from './api'
+ import { ErrorLine } from './components'
++import { MakeSearchable } from './features/knowledge-onboarding/MakeSearchable'
+ 
+ const clean = (e: unknown) => String(e).replace(/^Error: (\d{3}: )?/, '')
+ const when = (s: string | null) => (s ? new Date(s).toLocaleString() : 'never')
+@@ -68,6 +69,7 @@ export function KnowledgePage({ ws }: { ws: string }) {
+         </div>
+         {adding && <SourceForm ws={ws} kind={adding} onDone={s => { setAdding(null); setOpen(s.id) }} />}
+       </section>
++      <MakeSearchable key={ws} ws={ws} onOpen={setOpen} />
+       <TryIt ws={ws} />
+       {data && <IndexSettings ws={ws} index={data.index} onSaved={load} />}
+     </div>
